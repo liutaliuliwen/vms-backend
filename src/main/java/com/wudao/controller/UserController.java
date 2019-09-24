@@ -121,11 +121,23 @@ public class UserController {
      */
     @ResponseBody
     @GetMapping("/loadUserInfo")
-    public String loadUserInfo(HttpSession session)throws Exception{
+    public String loadUserInfo(HttpSession session) {
     	User currentUser=(User) session.getAttribute("currentUser");
     	Role currentRole=(Role) session.getAttribute("currentRole");
     	return "欢迎您："+currentUser.getTrueName()+"&nbsp;[&nbsp;"+currentRole.getName()+"&nbsp;]";
     }
+
+
+	@ResponseBody
+	@GetMapping("/getCurrentUserInfo")
+	public Map<String,Object> getCurrentUserInfo(HttpSession session){
+		User currentUser = (User) session.getAttribute("currentUser");
+		Role currentRole = (Role) session.getAttribute("currentRole");
+		Map<String, Object> result = new HashMap<>();
+		result.put("userName", currentUser.getUserName());
+		result.put("roleName", currentRole.getName());
+		return result;
+	}
     
     /**
      * 加载权限菜单
