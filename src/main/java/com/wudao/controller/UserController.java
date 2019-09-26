@@ -106,7 +106,7 @@ public class UserController {
     @ResponseBody
     @PostMapping("/saveRole")
     public Map<String,Object> saveRole(Integer roleId,HttpSession session)throws Exception{
-    	Map<String,Object> map=new HashMap<String,Object>();
+    	Map<String,Object> map=new HashMap<>();
     	Role currentRole=roleService.findById(roleId);
     	session.setAttribute("currentRole", currentRole); // 保存当前角色信息
     	map.put("success", true);
@@ -132,10 +132,10 @@ public class UserController {
 	@GetMapping("/getCurrentUserInfo")
 	public Map<String,Object> getCurrentUserInfo(HttpSession session){
 		User currentUser = (User) session.getAttribute("currentUser");
-		Role currentRole = (Role) session.getAttribute("currentRole");
+//		Role currentRole = (Role) session.getAttribute("currentRole");
 		Map<String, Object> result = new HashMap<>();
-		result.put("userName", currentUser.getUserName());
-		result.put("roleName", currentRole.getName());
+		result.put("userName", currentUser.getTrueName());
+//		result.put("roleName", currentRole.getName());
 		return result;
 	}
     
