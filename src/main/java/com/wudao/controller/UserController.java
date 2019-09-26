@@ -197,4 +197,35 @@ public class UserController {
     	}
     	return jsonArray;
     }
+
+
+//	@ResponseBody
+//	@PostMapping("/login")
+//	public Map<String,Object> login(@Valid User user,BindingResult bindingResult,HttpSession session){
+//		Map<String,Object> map=new HashMap<>();
+//		if(bindingResult.hasErrors()){
+//			map.put("success", false);
+//			map.put("errorInfo", bindingResult.getFieldError().getDefaultMessage());
+//			return map;
+//		}
+//		Subject subject=SecurityUtils.getSubject();
+//		UsernamePasswordToken token=new UsernamePasswordToken(user.getUserName(), user.getPassword());
+//		try{
+//			subject.login(token); // 登录认证
+//			String userName=(String) SecurityUtils.getSubject().getPrincipal();
+//			User currentUser=userService.findByUserName(userName);
+//			session.setAttribute("currentUser", currentUser);
+//			List<Role> roleList=roleService.findByUserId(currentUser.getId());
+//			map.put("roleList", roleList);
+//			map.put("roleSize", roleList.size());
+//			map.put("success", true);
+//			logService.save(new Log(Log.LOGIN_ACTION,"用户登录")); // 写入日志
+//			return map;
+//		}catch(Exception e){
+//			e.printStackTrace();
+//			map.put("success", false);
+//			map.put("errorInfo", "用户名或者密码错误！");
+//			return map;
+//		}
+//	}
 }
