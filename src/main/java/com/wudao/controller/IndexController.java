@@ -16,10 +16,10 @@ public class IndexController {
      * 网站根目录请求
      * @return
      */
-//    @RequestMapping("/")
-//    public String root() {
-//    	return "redirect:/login.html";
-//    }
-//
+    @RequestMapping("/")
+    public String root() {
+    	return "redirect:/login.html";
+    }
+
  
 }

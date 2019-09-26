@@ -8,6 +8,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -34,7 +35,11 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public User findByUserName(String userName) {
-		return userRepository.findByUserName(userName);
+		User user =  userRepository.findByUserName(userName);
+		if(user == null){
+			throw new UnknownAccountException("用户名不存在!");
+		}
+		return user;
 	}
 
 	@Override
