@@ -18,8 +18,8 @@ public class IndexController {
      */
     @RequestMapping("/")
     public String root() {
-    	return "redirect:/login.html";
+        return "redirect:/login.html";
     }
-    
+//
  
 }

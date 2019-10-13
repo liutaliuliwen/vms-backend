@@ -48,7 +48,7 @@ public class MyRealm extends AuthorizingRealm{
 		User user=userRepository.findByUserName(userName);
 		SimpleAuthorizationInfo info=new SimpleAuthorizationInfo();
 		List<Role> roleList=roleRepository.findByUserId(user.getId());
-		Set<String> roles=new HashSet<String>();
+		Set<String> roles=new HashSet<>();
 		for(Role role:roleList){
 			roles.add(role.getName());
 			List<Menu> menuList=menuRepository.findByRoleId(role.getId());
