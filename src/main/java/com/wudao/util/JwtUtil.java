@@ -13,9 +13,27 @@ import java.util.Date;
 
 
 public class JwtUtil {
-    private static final long EXPIRE_TIME = 5 * 60 * 1000;
     private static Logger logger = LoggerFactory.getLogger(ExceptionAdvice.class);
 
+    //5 分钟过期
+    private static final long EXPIRE_TIME = 5 * 60 * 1000;
+
+    /**
+     *
+     * @param username 用户名
+     * @param secret 用户的密码
+     * @return 加密的token
+     */
+
+    public static String sign(String username, String secret){
+        Date date = new Date(System.currentTimeMillis() + EXPIRE_TIME);
+        Algorithm algorithm = Algorithm.HMAC256(secret);
+        //附带username信息
+        return JWT.create()
+                .withClaim("username",username)
+                .withExpiresAt(date)
+                .sign(algorithm);
+    }
 
     public static boolean verify(String token, String username, String secret) {
         try{
@@ -31,6 +49,12 @@ public class JwtUtil {
     }
 
 
+    /**
+     *
+     * @param token
+     * @return 获取token中的用户名
+     */
+
     public static String getUsername(String token) {
         try{
             DecodedJWT jwt = JWT.decode(token);
@@ -41,12 +65,5 @@ public class JwtUtil {
         }
     }
 
-    public static String sign(String username, String secret){
-        Date date = new Date(System.currentTimeMillis() + EXPIRE_TIME);
-        Algorithm algorithm = Algorithm.HMAC256(secret);
-        return JWT.create()
-                .withClaim("username",username)
-                .withExpiresAt(date)
-                .sign(algorithm);
-    }
+
 }
