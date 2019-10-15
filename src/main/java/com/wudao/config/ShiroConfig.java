@@ -41,6 +41,8 @@ public class ShiroConfig {
 
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
         shiroFilterFactoryBean.setLoginUrl("/login.html");
+
+//        shiroFilterFactoryBean.setLoginUrl("/web/unauthorized");
  
 
         // 拦截器.

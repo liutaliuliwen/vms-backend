@@ -28,7 +28,7 @@ import com.wudao.util.StringUtil;
  */
 @RestController
 @RequestMapping("/admin/goods")
-public class GoodsAdminContrller {
+public class GoodsAdminController {
 
 	@Resource
 	private GoodsService goodsService;
