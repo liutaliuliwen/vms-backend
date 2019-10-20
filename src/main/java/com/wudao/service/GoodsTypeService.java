@@ -36,4 +36,11 @@ public interface GoodsTypeService {
 	 * @param id
 	 */
 	void delete(Integer id);
+
+
+	/**
+	 * 查找所有的商品类别信息
+	 * @return
+	 */
+	List<GoodsType> findAllType();
 }

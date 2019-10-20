@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,6 +45,13 @@ public class GoodsTypeAdminController {
 	public String loadTreeInfo()throws Exception{
     	logService.save(new Log(Log.SEARCH_ACTION,"查询商品类别信息")); // 写入日志
 		return getAllByParentId(-1).toString();
+	}
+
+
+	@GetMapping("/allType")
+//	@RequiresPermissions(value = { "商品管理","进货入库","当前库存查询"},logical=Logical.OR)
+	public List<GoodsType> getAllGoodsType(){
+    	return goodsTypeService.findAllType();
 	}
 	
 	/**

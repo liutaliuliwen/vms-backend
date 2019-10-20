@@ -32,6 +32,11 @@ public class GoodsTypeServiceImpl implements GoodsTypeService{
 	}
 
 	@Override
+	public List<GoodsType> findAllType() {
+		return goodsTypeRepository.findAll();
+	}
+
+	@Override
 	public List<GoodsType> findByParentId(int parentId) {
 		return goodsTypeRepository.findByParentId(parentId);
 	}
@@ -40,5 +45,6 @@ public class GoodsTypeServiceImpl implements GoodsTypeService{
 	public GoodsType findById(Integer id) {
 		return goodsTypeRepository.findOne(id);
 	}
+
 
 }
